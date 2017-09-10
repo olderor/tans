@@ -43,8 +43,8 @@ void init(const int size) {
   set_tans(size);
   bests.resize(size, -1);
   answs.resize(size);
-  for (int i = 0; i < size; ++i) {
-    answs[i].resize(i);
+  for (int i = 1; i < size; ++i) {
+    answs[i].resize(i - 1);
   }
 }
 
