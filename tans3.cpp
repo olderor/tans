@@ -12,14 +12,14 @@ struct state {
   long double res;
   long double mulres;
   long double mulsign;
-  
+
   state() : res(0), mulres(1), mulsign(1) {
   }
-  
-  state(long double res, long double mulres, long double mulsign) :
-    res(res), mulres(mulres), mulsign(mulsign) {
+
+  state(long double res, long double mulres, long double mulsign)
+    : res(res), mulres(mulres), mulsign(mulsign) {
   }
-  
+
   long double get() {
     return res + mulres * mulsign;
   }
@@ -27,7 +27,7 @@ struct state {
 
 vector<long double> tans;
 
-vector< vector<char> > answs;
+vector<vector<char> > answs;
 vector<long double> bests;
 
 void set_tans(const int size) {
@@ -81,7 +81,7 @@ void setrandom(const int size) {
     prev = getdif(cur.get(), i);
     if (prev < bests[i] || bests[i] == -1) {
       bests[i] = prev;
-      for (int j = 0; j < i; ++j) {
+      for (int j = 0; j < answ.size(); ++j) {
         answs[i][j] = answ[j];
       }
     }
@@ -92,7 +92,7 @@ string getansw(const int size) {
   if (size < 2) {
     return "";
   }
-  
+
   stringstream ss;
   for (int i = 0; i < size; ++i) {
     ss << answs[size][i];
@@ -115,17 +115,17 @@ int main() {
     cout << "processing " << (i + 1) * 100000 << "\n";
     setrandom(size, 100000);
   }
-  
-  ofstream fout("output5.txt");
-  
+
+  ofstream fout("output6.txt");
+
   for (int i = 2; i < size; ++i) {
     string res = getansw(i);
-    
+
     cout << i << " " << bests[i] << " " << res << "\n";
     fout << i << " " << bests[i] << " " << res << "\n";
   }
-  
+
   fout.close();
-  
+
   return 0;
 }
